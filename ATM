@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+void showmenu(){
+    cout<<"********Menu**********"<<endl;
+    cout<<"  1.  show Balance "<<endl;
+    cout<<"  2.  Deposit "<<endl;
+    cout<<"  3.  Cash withdrawl "<<endl;
+    cout<<"  4.  Exit   "<<endl;
+}
+
+int main(){
+    int option;
+    double balance=5000;
+    do{
+    showmenu();
+    cout<<"OPTION";
+    cin>>option;
+    system("cls");  /*It will clear the console after each option we select*/ 
+    switch(option){
+        case 1: cout<<"Your balance is:"<<balance<<endl;
+        break;
+        case 2:
+        double deposit;
+        cout<<"Enter the amount to deposit: \n";
+        cin>>deposit;
+        balance+=deposit;
+        break;
+        case 3:
+        double amount;
+        cout<<"Enter the amount to withdraw: \n";
+        cin>>amount;
+        if(amount<=balance){
+        balance-=amount;}
+        else{
+            cout<<"Insufficient balance!! \n";
+        }
+        break;
+        default:
+        cout<<"Invalid choice !!";
+        
+    }
+    }while(option!=4);
+    return 0;
+}
+
+    
