@@ -1,0 +1,116 @@
+#include<iostream>
+using namespace std;
+struct node
+{
+public:
+int data;
+node *next;
+};
+static struct node *head=NULL;
+static int counter=0;
+void insertAtBeginning()
+{
+int n;
+cout<<"Enter data: ";
+cin>>n;
+struct node *new_node=new node;
+new_node->data=n;
+new_node->next=head;
+head=new_node;
+counter++;
+}
+void insertAtEnd()
+{
+int n;
+struct node *temp,*new_node=new node;
+temp=head;
+cout<<"Enter data: ";
+cin>>n;
+new_node->data=n;
+while(temp->next!=NULL)
+{
+temp=temp->next;
+}
+temp->next=new_node;
+new_node->next=NULL;
+counter++;
+}
+void insertRan()
+{
+int n,p;
+struct node *temp,*new_node;
+new_node=new node;
+temp=head;
+cout<<"Enter position: ";
+cin>>p;
+if(p>counter)
+{
+cout<<"invalid position"<<endl;
+}
+else if(p==1)
+{
+insertAtBeginning();
+}
+else if(p==counter+1)
+{
+insertAtEnd();
+}
+else
+{
+cout<<"Enter data: ";
+cin>>n;
+new_node->data=n;
+for(int i=0;i<p-1;i++)
+{
+temp=temp->next;
+}
+new_node->next=temp->next;
+temp->next=new_node;
+}
+counter++;
+
+
+}
+void display()
+{
+struct node *ptr;
+ptr=head;
+while(ptr!=NULL)
+{
+cout<<ptr->data<<"  ";
+ptr=ptr->next;
+}
+cout<<endl;
+}
+int main()
+{
+
+int x;
+
+while(x!=5)
+{
+cout<<"Enter 1 for insert At Beginning,2 for insert At end, 3 for insert at position,4 for display and 5 fro exit: ";
+cin>>x;
+switch(x)
+{
+case 1:
+insertAtBeginning();
+break;
+case 2:
+insertAtEnd();
+break;
+case 3:
+insertRan();
+break;
+case 4:
+cout<<"The linked list is: ";
+display();
+break;
+
+default:
+cout<<"Invalid input";
+}
+}
+
+return 0;
+}
